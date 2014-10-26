@@ -4,6 +4,7 @@ from .base import BaseProcessor
 from subprocess import Popen as execute, PIPE, STDOUT, check_call
 from os.path import abspath, dirname, exists, join
 from tempfile import NamedTemporaryFile
+import re
 
 
 class PlantUMLDiagram(BaseDiagram):
@@ -12,10 +13,9 @@ class PlantUMLDiagram(BaseDiagram):
 
         matchObj = re.search(r'(?<=@startuml\s).+?\.png', text)
         if matchObj:
-            self.file = open(os.path.dirname(sourceFile) + '/' + matchObj.group(), "w+b")
+            self.file = open(dirname(sourceFile) + '/' + matchObj.group(), "w+b")
         else:
             self.file = NamedTemporaryFile(prefix=sourceFile, suffix='.png', delete=False)
-        print(self.file.name)
 
     def generate(self):
         puml = execute(
