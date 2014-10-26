@@ -16,7 +16,7 @@ If you wish to override the viewer used, create a user version of
 Diagram.sublime-settings file in the usual way.
 
 
-# Install
+# Requirements
 
 To install from scratch, it's necessary to have:
 
@@ -30,10 +30,11 @@ Sublime Text.
 
 # Support
 
-Operating Systems:  MacOS X, Linux
-Diagram Types: PlantUML
+Operating Systems:  MacOS X, Linux  
+Diagram Types: PlantUML  
 Viewers (in order of preference):
 
+* Sublime Text3(**not 2**)
 * MacOS X Preview
 * MacOS X QuickLook
 * Eye of Gnome
@@ -42,21 +43,29 @@ Patches to support additional viewers or diagrams are welcome.
 
 # Install Instructions
 
-Check out the source directory or download and uncompress the source tarball.
-Put this directoy in the Packages directory for your platform.
-
-On Linux, it's sometimes "~/.config/sublime-text-2/Packages/".
-On MacOS X, it's "~/Library/Application Support/Sublime Text 2/Packages/".
-
+1. Git clone this repository or download and uncompress zipped one.(in Packages directory for your platform)  
 Sublime Text should detect the plugin and automatically load it.
+
+  * On Linux, it's sometimes "~/.config/sublime-text-2/Packages/".
+  * On MacOS X, it's r"~/Library/Application Support/Sublime Text( 2)?/Packages/".
+
+2. Export PATH of subl(Sublime Text3)  
+For example,  
+```zsh
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+```
+**If you don't want to preview in Sublime Text or use *Sublime Text2*, select other viewer instead.**  
+For example,  
+```json
+{
+  "viewer" : "Preview" //Sublime, Preview, QuickLook or EyeOfGnome
+}
+```
+
 
 The source is available via git at:
 
-https://github.com/jvantuyl/sublime_diagram_plugin.git
-
-Or as a tarball at:
-
-https://github.com/jvantuyl/sublime_diagram_plugin/tarball/master
+https://github.com/amaya-382/sublime_diagram_plugin.git
 
 # Thanks
 
