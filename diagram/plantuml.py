@@ -9,7 +9,13 @@ from tempfile import NamedTemporaryFile
 class PlantUMLDiagram(BaseDiagram):
     def __init__(self, processor, sourceFile, text):
         super(PlantUMLDiagram, self).__init__(processor, sourceFile, text)
-        self.file = NamedTemporaryFile(prefix=sourceFile, suffix='.png', delete=False)
+
+        matchObj = re.search(r'(?<=@startuml\s).+?\.png', text)
+        if matchObj:
+            self.file = open(os.path.dirname(sourceFile) + '/' + matchObj.group(), "w+b")
+        else:
+            self.file = NamedTemporaryFile(prefix=sourceFile, suffix='.png', delete=False)
+        print(self.file.name)
 
     def generate(self):
         puml = execute(
